@@ -40,7 +40,7 @@ type workExperience struct {
 // }
 
 
-func calcAllCurrentCompanyWorkDuration(acct account) int {
+func calcAllCurrentCompanyWorkDuration(acct *account) int {
 
 	workExperienceJobDuration := []int{}
 	totalMonths := 0
@@ -66,14 +66,14 @@ func calcAllCurrentCompanyWorkDuration(acct account) int {
 	return totalMonths
 }
 
-func newAccount(userName, firstName, lastName, email string, experiences []workExperience) (account, error) {
+func newAccount(userName, firstName, lastName, email string, experiences *[]workExperience) (account, error) {
 
 	return account{
 		userName: userName,
 		firstName: firstName,
 		lastName: lastName,
 		email: email,
-		workExperience: experiences,
+		workExperience: *experiences,
 	}, nil
 }
 
@@ -124,7 +124,7 @@ func main() {
 		},
 	}
 
-	phillipgibson, err := newAccount("phillipgibson", "Phill", "Gibson", "phillipgibson@notreal.com", workExperiences)
+	phillipgibson, err := newAccount("phillipgibson", "Phill", "Gibson", "phillipgibson@notreal.com", &workExperiences)
 
 	if err != nil {
 		fmt.Println("please check your account info for input errors")
@@ -133,7 +133,7 @@ func main() {
 
 
 	// isWorkExperienceAnniversary(phillipgibson)
-	totalWorkDurationMonths := calcAllCurrentCompanyWorkDuration(phillipgibson)
+	totalWorkDurationMonths := calcAllCurrentCompanyWorkDuration(&phillipgibson)
 	fmt.Printf(`Congratulate %v %v on his current {TODO} year work anniversary. They have been at %v for a total of %v years and %v months.`, 
 	phillipgibson.firstName, phillipgibson.lastName, phillipgibson.workExperience[0].company,
   (totalWorkDurationMonths / 12), (totalWorkDurationMonths % 12))
