@@ -25,21 +25,6 @@ type workExperience struct {
 	endDate time.Time
 }
 
-// TODO - func logic should already exist in main program | no need to recreate
-// func isWorkExperienceAnniversary(acct account) {
-// 	currentDate := time.Now()
-
-// 	for _, currentRole := range acct.workExperience {
-// 		if currentRole.currentCompany && currentRole.endDate.IsZero() {
-
-// 			fmt.Println("After: ", currentDate.AddDate(0, -12, 0))
-// 			fmt.Println("Before: ", currentDate.AddDate(0, 11, 0))
-
-// 		}
-// 	}
-// }
-
-
 func calcAllCurrentCompanyWorkDuration(acct *account) int {
 
 	workExperienceJobDuration := []int{}
@@ -132,7 +117,6 @@ func main() {
 	}
 
 
-	// isWorkExperienceAnniversary(phillipgibson)
 	totalWorkDurationMonths := calcAllCurrentCompanyWorkDuration(&phillipgibson)
 	fmt.Printf(`Congratulate %v %v on his current {TODO} year work anniversary. They have been at %v for a total of %v years and %v months.`, 
 	phillipgibson.firstName, phillipgibson.lastName, phillipgibson.workExperience[0].company,
